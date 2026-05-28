@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.bootloader =
+  flake.modules.nixos.bootloader =
     loader:
     {
       configurationLimit ? 5,
