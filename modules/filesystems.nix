@@ -1,25 +1,9 @@
 {
-  flake.nixosModules.filesystems =
-    {
-      root,
-      boot,
-      swapDevices ? [ ],
-      extraFilesystems ? { },
-    }:
-    { lib, ... }:
-    {
-      fileSystems = lib.mkMerge [
-        {
-          "/" = {
-            inherit (root) device fsType options;
-          };
-          "/boot" = {
-            inherit (boot) device fsType options;
-          };
-        }
-        extraFilesystems
-      ];
+  flake.nixosModules.filesystems = fileSystems: {
+    inherit fileSystems;
+  };
 
-      inherit swapDevices;
-    };
+  flake.nixosModules.swapDevices = swapDevices: {
+    inherit swapDevices;
+  };
 }
